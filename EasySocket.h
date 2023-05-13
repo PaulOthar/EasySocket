@@ -139,7 +139,11 @@ void EasySocketClose(EasySocket* es){
         exit(1);
     }
 
-    portableClose(es->descriptor);
+    int message = portableClose(es->descriptor);
+    if(message == -1){
+        perror("[+]Error on close");
+        exit(1);
+    }
     printf("[+]EasySocket Sucessifully closed.\n");
 }
 

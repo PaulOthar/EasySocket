@@ -16,8 +16,7 @@ int portableSetup(){
 }
 
 int portableClose(int addr){
-    closesocket(addr);
-    return 0;
+    return closesocket(addr);
 }
 
 #else
@@ -32,8 +31,7 @@ int portableSetup(){
 }
 
 int portableClose(int addr){
-    close(addr);
-    return 0;
+    return close(addr);
 }
 
 #endif
