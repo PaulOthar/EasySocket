@@ -222,6 +222,22 @@ void EasySocketSend(EasySocket* es,char* message){
     printf("[+]EasySocket Sent:\"%s\"\n",es->buffer);
 }
 
+void EasySocketSendUnconnected(EasySocket* es,char* message){
+    if(es==NULL){
+        perror("[!]EasySocket Is Null on Send Unconnected!");
+        exit(1);
+    }
+
+    int check = sendto(es->descriptor,message,strlen(message),0,(struct sockaddr*)&(es->addr),sizeof(es->addr));
+
+    if(check == -1){
+        perror("[!]EasySocket is unable to send unconnected message");
+        exit(1);
+    }
+
+    printf("[+]EasySocket Sent:\"%s\"\n",message);
+}
+
 void EasySocketRecive(EasySocket* es){
     if(es==NULL){
         perror("[!]EasySocket Is Null on Send!");
