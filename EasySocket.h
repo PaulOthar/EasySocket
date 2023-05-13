@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <winsock2.h>
+//#include <winsock2.h>
 #include "portableSockets.h"
 
 #define IPV4 AF_INET
