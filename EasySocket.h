@@ -33,6 +33,20 @@ typedef struct /*EasySocket*/{
         1 = TCP
 */
 
+void EasySocketClose(EasySocket* es){
+    if(es==NULL){
+        perror("[!]EasySocket Is Null on Close!");
+        exit(1);
+    }
+
+    int message = portableClose(es->descriptor);
+    if(message == -1){
+        perror("[+]Error on close");
+        exit(1);
+    }
+    printf("[+]EasySocket Sucessifully closed.\n");
+}
+
 void EasySocketInitDescriptor(EasySocket* es,int family,int type){
     if(es==NULL){
         perror("[!]EasySocket Is Null on Descriptor Initialization!");
@@ -58,6 +72,7 @@ void EasySocketInitDescriptor(EasySocket* es,int family,int type){
     char* message[4] = {"IPV4","IPV6","UDP","TCP"};
 
     if(es->descriptor == -1){
+        EasySocketClose(es);
         perror("[!]Error on socket descriptor");
         exit(1);
     }
@@ -133,20 +148,6 @@ void EasySocketClearBuffer(EasySocket* es){
     }
 }
 
-void EasySocketClose(EasySocket* es){
-    if(es==NULL){
-        perror("[!]EasySocket Is Null on Close!");
-        exit(1);
-    }
-
-    int message = portableClose(es->descriptor);
-    if(message == -1){
-        perror("[+]Error on close");
-        exit(1);
-    }
-    printf("[+]EasySocket Sucessifully closed.\n");
-}
-
 void EasySocketBind(EasySocket* server){
     if(server==NULL){
         perror("[!]EasySocket Is Null on Bind!\n");
@@ -187,6 +188,8 @@ void EasySocketAccept(EasySocket* server,EasySocket* client){
     client->descriptor = accept(server->descriptor,(struct sockaddr*)&(client->addr),&addrSize);
 
     if(client->descriptor == -1){
+        EasySocketClose(server);
+        EasySocketClose(client);
         perror("[!]Error on accept");
         exit(1);
     }
@@ -223,6 +226,7 @@ void EasySocketSend(EasySocket* es,char* message){
     int check = send(es->descriptor,es->buffer,strlen(es->buffer)+1,0);
 
     if(check == -1){
+        EasySocketClose(es);
         perror("[!]EasySocket is unable to send message");
         exit(1);
     }
@@ -239,6 +243,7 @@ void EasySocketSendUnconnected(EasySocket* es,char* message){
     int check = sendto(es->descriptor,message,strlen(message),0,(struct sockaddr*)&(es->addr),sizeof(es->addr));
 
     if(check == -1){
+        EasySocketClose(es);
         perror("[!]EasySocket is unable to send unconnected message");
         exit(1);
     }
@@ -257,6 +262,7 @@ void EasySocketRecive(EasySocket* es){
     int check = recv(es->descriptor,es->buffer,es->bufferSize,0);
 
     if(check == -1){
+        EasySocketClose(es);
         perror("[!]EasySocket is unable to recive message");
         exit(1);
     }
