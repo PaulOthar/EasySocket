@@ -25,6 +25,7 @@ int portableClose(int addr){
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 int portableSetup(){
     return 0;
