@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-//#include <winsock2.h>
 #include "portableSockets.h"
 
 #define IPV4 AF_INET
@@ -81,7 +80,12 @@ void EasySocketInitAddr(EasySocket* es,char* ip,int port,int family){
 
     es->addr.sin_port = htons(port);
 
-    es->addr.sin_addr.s_addr = inet_addr(ip);
+    if(ip == NULL){
+        es->addr.sin_addr.s_addr = INADDR_ANY;
+    }
+    else{
+        es->addr.sin_addr.s_addr = inet_addr(ip);
+    }
 
     es->port = port;
     es->isCompromised = 0;

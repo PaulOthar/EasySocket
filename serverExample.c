@@ -9,7 +9,7 @@ int main(int argc,char** argv){
 
     //EasySocketInitBuffer(&server,150);
     EasySocketInitDescriptor(&server,0,1);
-    EasySocketInitAddr(&server,"192.168.0.25",5000,0);
+    EasySocketInitAddr(&server,NULL,5000,0);
 
     EasySocketInitBuffer(&client,150);
 
