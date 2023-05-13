@@ -11,7 +11,7 @@ int main(int argc,char** argv){
     EasySocketInitDescriptor(&server,0,1);
     EasySocketInitAddr(&server,"192.168.0.25",5000,0);
 
-    EasySocketInitBuffer(&server,150);
+    EasySocketInitBuffer(&client,150);
 
     EasySocketBind(&server);
     EasySocketListen(&server,1);
