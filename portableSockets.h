@@ -20,12 +20,11 @@ int portableClose(int addr){
     return 0;
 }
 
-#endif
-
-#ifdef _LINUX
+#else
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <unistd.h>
 
 int portableSetup(){
     return 0;
