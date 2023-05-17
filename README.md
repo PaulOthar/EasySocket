@@ -1,13 +1,13 @@
 # EasySocket
 EasySocket is a simple library to deal with sockets, simplifying the process of building a functional socket application in C.<br>
-```ws2_32``` is needed to be compiled in windows.
+```ws2_32```Library is needed to be compiled in windows.
 <br>
 ### EasySocketClose - (EasySocket)
 Attempts to close the descriptor of a EasySocket
 ### EasySocketInitDescriptor - (EasySocket,Family,Type)
 Attempts to initialize a descriptor of a EasySocket<br>
 |Value|Family|True Family|
-|-|-||
+|-|-|-|
 |0|IPV4|AF_INET|
 |1|IPV6|AF_INET6|<br>
 |Value|Type|True Type|
@@ -17,7 +17,7 @@ Attempts to initialize a descriptor of a EasySocket<br>
 ### EasySocketInitAddr - (EasySocket,IP,Port,Family)
 Attempts to initialize the "addr" Structure inside of a EasySocket<br>
 |Value|Family|True Family|
-|-|-||
+|-|-|-|
 |0|IPV4|AF_INET|
 |1|IPV6|AF_INET6|<br>
 |Value|Type|True Type|
