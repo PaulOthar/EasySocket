@@ -21,8 +21,7 @@ Attempts to initialize the "addr" Structure inside of a EasySocket<br>
 |Value|Family|True Family|
 |-|-|-|
 |0|IPV4|AF_INET|
-|1|IPV6|AF_INET6|<br>
-|Value|Type|True Type|
+|1|IPV6|AF_INET6|
 ### EasySocketInitBuffer - (EasySocket,BufferSize)
 Attempts to allocate a char buffer inside a EasySocket
 ### EasySocketFreeBuffer - (EasySocket)
