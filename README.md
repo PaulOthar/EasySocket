@@ -9,7 +9,9 @@ Attempts to initialize a descriptor of a EasySocket<br>
 |Value|Family|True Family|
 |-|-|-|
 |0|IPV4|AF_INET|
-|1|IPV6|AF_INET6|<br>
+|1|IPV6|AF_INET6|
+
+
 |Value|Type|True Type|
 |-|-|-|
 |0|UDP|SOCK_DGRAM|
