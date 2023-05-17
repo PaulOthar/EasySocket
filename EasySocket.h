@@ -270,4 +270,43 @@ void EasySocketRecive(EasySocket* es){
     printf("[+]EasySocket Recieved:\"%s\"\n",es->buffer);
 }
 
+void EasySocketHTTP_URI_Reader(EasySocket* es,char* uriBuffer,int uriSize){
+    if(es==NULL){
+        perror("[!]EasySocket Is Null on HTTP URI Reader!");
+        exit(1);
+    }
+
+    int i = 0;
+
+    for(i = 1;i<es->bufferSize;i++){
+        if(es->buffer[i] == ' '){
+            i++;
+            break;
+        }
+    }
+
+    int uriPivot = 0;
+
+    for(i;i<es->bufferSize;i++){
+        if(es->buffer[i] == ' '){
+            i++;
+            if(uriPivot < uriSize){
+                uriBuffer[uriPivot] = '\0';
+            }
+            else{
+                uriBuffer[uriPivot-1] = '\0';
+            }
+            break;
+        }
+        if(uriPivot < uriSize){
+            uriBuffer[uriPivot] = es->buffer[i];
+            uriPivot += 1;
+        }
+        else{
+            uriBuffer[uriPivot-1] = '\0';
+            break;
+        }
+    }
+}
+
 #endif
